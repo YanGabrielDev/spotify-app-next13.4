@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes } from 'react'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
-    text: string,
-    className: string,
-    icon: JSX.Element
+    text?: string,
+    className?: string,
+    icon?: JSX.Element
 }
 export const Button = ({ text, icon,className, color, ...props }: ButtonProps) => {
     return (
