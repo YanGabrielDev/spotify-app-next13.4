@@ -1,6 +1,6 @@
-import '..//styles/globals.css'
+import { Footer } from '@/components/Footer'
+import '../../styles/globals.css'
 import { Poppins } from 'next/font/google'
-
 
 const poppins = Poppins({
     subsets: ['latin'],
@@ -20,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-sans`}>{children}</body>
+      {/* <Footer/> */}
     </html>
   )
 }
