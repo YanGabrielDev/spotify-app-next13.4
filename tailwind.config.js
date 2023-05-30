@@ -24,11 +24,6 @@ module.exports = {
          100: "#1ed760"
       }
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-      },
       keyframes: {
         wiggle: {
           '0%': { transform: 'translatey(-50px)', opacity: "0" },
