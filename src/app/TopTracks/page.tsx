@@ -8,7 +8,6 @@ import { LimitSelector } from "@/components/LimitSelector";
 import { TimeRangeSelector, TimeRange } from "@/components/TimeRangeSelector";
 import { HeaderTracks } from "@/components/HeaderTracks";
 import { PrintContainer } from "@/components/PrintContainer";
-import {useSearchParams} from 'next/navigation'
 
 function TopTracks() {
   const domEl = useRef<HTMLDivElement>(null);
@@ -16,7 +15,6 @@ function TopTracks() {
   const [isLoading, setIsloading] = useState<boolean>(true);
   const [typeTime, setTypeTime] = useState<TimeRange>("long_term");
   const [limitTracks, setLimitTracks] = useState<number>(5)
-  const paramslog = useSearchParams()
 
   const spotifyApi = new SpotifyWebApi();
 
@@ -72,10 +70,8 @@ function TopTracks() {
 
   return (
     <>
-      <div className="xs:px-[400px] text-white h-full bg-black">
-          <h1 className="text-[20px] xs:text-4xl">Your Top Spotify tracks</h1>
-        <div className="w-full flex justify-center pt-5">
-        </div>
+      <div className="flex flex-col items-center text-white h-full bg-black py-4">
+          <h1 className="text-[20px] sm:text-4xl text-[1.3rem] md:text-4xl">Your Top Spotify tracks</h1>
         {isLoading ? (
           <Loader />
         ) : (

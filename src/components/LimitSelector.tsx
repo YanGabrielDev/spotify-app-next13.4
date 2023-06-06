@@ -4,7 +4,7 @@ interface LimitSelectorProps{
 }
 export const LimitSelector = ({getTopTracksOfLimit, limitTracks}: LimitSelectorProps) => {
     return(
-        <div className="w-full flex justify-center pt-8">
+        <div className="w-full flex justify-center pt-8 xs:text-base text-sm">
         <span
           className={`px-4 ${limitTracks === 5 && "selectedTime"}`}
           onClick={() => getTopTracksOfLimit(5)}

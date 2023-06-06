@@ -4,7 +4,7 @@ import { Poppins } from 'next/font/google'
 
 const poppins = Poppins({
     subsets: ['latin'],
-    weight: "600",
+    weight: "400",
     variable: '--font-poppins'
 })
 export const metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} font-sans`}>{children}</body>
-      {/* <Footer/> */}
+      <Footer/>
     </html>
   )
 }
