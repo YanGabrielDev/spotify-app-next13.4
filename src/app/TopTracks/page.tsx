@@ -1,6 +1,7 @@
 'use client'
 import { TopFiveTracks } from "@/components/TopFiveTracks";
 import { Loader } from "@/icons/Loader";
+import {Logo } from "../../icons/Logo";
 import { useState, useEffect, useRef } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import SpotifyIcon from "@/icons/SpotifyIcon";
@@ -71,7 +72,9 @@ function TopTracks() {
   return (
     <>
       <div className="flex flex-col items-center text-white h-full bg-black py-4">
-          <h1 className="text-[20px] sm:text-4xl text-[1.3rem] md:text-4xl">Your Top Spotify tracks</h1>
+        <Logo/>
+          {/* <h1 className="text-[20px] sm:text-4xl text-[1.3rem] md:text-4xl">Your Top Spotify tracks</h1> */}
+  
         {isLoading ? (
           <Loader />
         ) : (
