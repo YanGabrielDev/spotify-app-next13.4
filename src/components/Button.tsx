@@ -5,11 +5,12 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     className?: string,
     icon?: JSX.Element
 }
+
 export const Button = ({ text, icon,className, color, ...props }: ButtonProps) => {
     return (
         <button
             className={`${className} flex text-black items-center
-             bg-blue-700 py-1 px-6 rounded-2xl`}
+             bg-blue-700 py-1 px-6 rounded-2xl font-bold`}
             {...props}
         >
             <span className={`text-sm uppercase tracking-wider`}>
