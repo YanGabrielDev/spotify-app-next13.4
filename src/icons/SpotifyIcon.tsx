@@ -1,4 +1,4 @@
-import { IconProps } from "@/interfaces/icon";
+import { IconProps } from "@/interfaces/Icon";
 
 function SpotifyIcon({fill, height, width}: IconProps) {
     return (
