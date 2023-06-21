@@ -9,6 +9,8 @@ import { LimitSelector } from "@/components/LimitSelector";
 import { TimeRangeSelector, TimeRange } from "@/components/TimeRangeSelector";
 import { HeaderTracks } from "@/components/HeaderTracks";
 import { PrintContainer } from "@/components/PrintContainer";
+import { Button } from "@/components/Button";
+import Exit from "@/icons/Exit";
 
 function TopTracks() {
   const domEl = useRef<HTMLDivElement>(null);
@@ -69,12 +71,18 @@ function TopTracks() {
     getTopTracks(newTimeRange, limitTracks)
   }
 
+ function logout(){
+  spotifyApi.setAccessToken(null)
+  const accessToken =  spotifyApi.getAccessToken()
+  if (accessToken === null){
+    window.location.href = "/"
+  }
+}
   return (
-    <>
       <div className="flex flex-col items-center text-white h-full bg-black py-4">
-        <Logo/>
-          {/* <h1 className="text-[20px] sm:text-4xl text-[1.3rem] md:text-4xl">Your Top Spotify tracks</h1> */}
-  
+        <div className='flex w-full justify-end pt-3 pr-3'>
+         <Button className="bg-green-100" onClick={() => logout()} icon={<Exit height='20' width='20'/>} text='sair'/>
+        </div>
         {isLoading ? (
           <Loader />
         ) : (
@@ -103,7 +111,6 @@ function TopTracks() {
           </>
         )}
       </div>
-    </>
   );
 }
 
