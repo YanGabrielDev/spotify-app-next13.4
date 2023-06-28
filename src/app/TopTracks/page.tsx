@@ -11,6 +11,7 @@ import { HeaderTracks } from "@/components/HeaderTracks";
 import { PrintContainer } from "@/components/PrintContainer";
 import { Button } from "@/components/Button";
 import Exit from "@/icons/Exit";
+import {useRouter} from 'next/navigation'
 
 function TopTracks() {
   const domEl = useRef<HTMLDivElement>(null);
@@ -18,7 +19,7 @@ function TopTracks() {
   const [isLoading, setIsloading] = useState<boolean>(true);
   const [typeTime, setTypeTime] = useState<TimeRange>("long_term");
   const [limitTracks, setLimitTracks] = useState<number>(5)
-
+  const route = useRouter()
   const spotifyApi = new SpotifyWebApi();
 
 
@@ -71,13 +72,13 @@ function TopTracks() {
     getTopTracks(newTimeRange, limitTracks)
   }
 
- function logout(){
-  spotifyApi.setAccessToken(null)
-  const accessToken =  spotifyApi.getAccessToken()
-  if (accessToken === null){
-    window.location.href = "/"
-  }
+ async function logout(){
+  const url = "https://accounts.spotify.com/en/logout"                                                                                                                                                                                                                                                                               
+  const spotifyLogoutWindow = window.open(url, 'Spotify Logout', 'width=700,height=500,top=40,left=40')                                                                                                
+  setTimeout(() =>{ spotifyLogoutWindow?.close(), route.push("/")}, 500)
+
 }
+
   return (
       <div className="flex flex-col items-center text-white h-full bg-black py-4">
         <div className='flex w-full justify-end pt-3 pr-3'>

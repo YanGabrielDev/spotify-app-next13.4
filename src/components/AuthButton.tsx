@@ -5,7 +5,10 @@ import { Button } from "./Button";
 
 export const AuthButton = () => {
   async function handleLogin(){
-    await fetch("api/auth")
+    const client_id = process.env.NEXT_PUBLIC_CIENT_ID;
+    const redirect_uri = "http://localhost:3000/TopTracks";
+    const scope = "user-top-read";
+    window.location.href = `https://accounts.spotify.com/authorize?response_type=token&client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}`;
   }
    
   return (
