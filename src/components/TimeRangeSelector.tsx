@@ -6,7 +6,7 @@ export interface TimeRangeSelectorProps{
 }
 export const TimeRangeSelector = ({getTopTracksOfTimeRange, typeTime}: TimeRangeSelectorProps) =>{
     return(
-        <div className="w-full flex justify-center pt-8 mb-8 xs:text-base text-sm">
+        <div className="w-full flex justify-center pt-8 mb-4 xs:text-base text-sm">
               <span
                 className={`px-4 ${typeTime === "long_term" && "selectedTime"}`}
                 onClick={() => getTopTracksOfTimeRange("long_term")}
