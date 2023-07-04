@@ -9,7 +9,7 @@ export const Button = ({ text, icon,className, color, ...props }: ButtonProps) =
     return (
         <button
             className={`${className} flex text-black items-center
-             bg-blue-700 py-1 px-6 rounded-2xl`}
+             bg-blue-700 py-1 px-6 rounded-2xl transform transition-transform hover:scale-110 active:scale-75`}
             {...props}
         >
             <span className={`text-sm uppercase tracking-wider`}>
