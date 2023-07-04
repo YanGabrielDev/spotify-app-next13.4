@@ -5,6 +5,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>{
     className?: string,
     icon?: JSX.Element
 }
+
 export const Button = ({ text, icon,className, color, ...props }: ButtonProps) => {
     return (
         <button

@@ -74,16 +74,9 @@ function TopTracks() {
   };
 
   return (
-    <>
       <div className="flex flex-col items-center text-white h-full bg-black py-4">
-        <div className="w-full flex justify-between items-center px-6">
-          <Logo />
-          <Button
-            className="bg-green-100"
-            onClick={() => logout()}
-            icon={<Exit height="20" width="20" />}
-            text="sair"
-          />
+        <div className='flex w-full justify-end pt-3 pr-3'>
+         <Button className="bg-green-100" onClick={() => logout()} icon={<Exit height='20' width='20'/>} text='sair'/>
         </div>
         {isLoading ? (
           <Loader />
@@ -115,7 +108,6 @@ function TopTracks() {
           </>
         )}
       </div>
-    </>
   );
 }
 
