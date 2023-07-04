@@ -23,7 +23,7 @@ export const PrintContainer = ({ children, domEl }: PrintContainerProps) => {
         {children}
       </div>
       <div className="w-full flex justify-center">
-        <Button onClick={() => handleCapture()} color="bg-blue-600" />
+        <Button onClick={() => handleCapture()} color="bg-blue-600" text="Download" />
       </div>
     </>
   );
