@@ -1,27 +1,30 @@
-'use client'
+"use client";
+
 import { TopFiveTracks } from "@/components/TopFiveTracks";
 import { Loader } from "@/icons/Loader";
-import {Logo } from "../../icons/Logo";
+import { Logo } from "../../icons/Logo";
 import { useState, useEffect, useRef } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import SpotifyIcon from "@/icons/SpotifyIcon";
-import { LimitSelector } from "@/components/LimitSelector";
 import { TimeRangeSelector, TimeRange } from "@/components/TimeRangeSelector";
 import { HeaderTracks } from "@/components/HeaderTracks";
 import { PrintContainer } from "@/components/PrintContainer";
+import { Button } from "@/components/Button";
+import Exit from "@/icons/Exit";
+import { useRouter } from "next/navigation";
 
 function TopTracks() {
   const domEl = useRef<HTMLDivElement>(null);
   const [tracks, setTracks] = useState<SpotifyApi.TrackObjectFull[]>([]);
   const [isLoading, setIsloading] = useState<boolean>(true);
   const [typeTime, setTypeTime] = useState<TimeRange>("long_term");
-  const [limitTracks, setLimitTracks] = useState<number>(5)
+  const route = useRouter()
+  const limitTracks: number = 5
 
   const spotifyApi = new SpotifyWebApi();
 
-
   const showTypeTime = (typeTime: TimeRange): string => {
-    switch(typeTime) {
+    switch (typeTime) {
       case "long_term":
         return "All Time";
       case "short_term":
@@ -34,9 +37,7 @@ function TopTracks() {
   };
 
   //Chama a request tracks
-  const getTopTracks = (
-    timeRange: TimeRange, limit: number
-  ) => {
+  const getTopTracks = (timeRange: TimeRange, limit: number) => {
     setTypeTime;
     spotifyApi
       .getMyTopTracks({ time_range: timeRange, limit: limit })
@@ -49,40 +50,51 @@ function TopTracks() {
       });
   };
 
-  //Obtem o token na url e chama a request
+  //Obtem o token na url
   useEffect(() => {
-      const params = new URLSearchParams(window.location.hash.replace("#", "?"));
+    const urlHash = window.location.hash;
+    if (urlHash) {
+      const params = new URLSearchParams(urlHash.replace("#", "?"));
       const accessToken = params.get("access_token");
     if (accessToken) {
       spotifyApi.setAccessToken(accessToken);
       getTopTracks("long_term", limitTracks);
+      window.history.pushState({}, document.title, window.location.pathname);
     }
-  }, []);
-
-  const getTopTracksOfLimit = (newLimit: number) => {
-    setLimitTracks(newLimit)
-    getTopTracks(typeTime, newLimit)
-  }
+  }}, []);
 
   const getTopTracksOfTimeRange = (newTimeRange: TimeRange) => {
-    setTypeTime(newTimeRange)
-    getTopTracks(newTimeRange, limitTracks)
-  }
+    setTypeTime(newTimeRange);
+    getTopTracks(newTimeRange, limitTracks);
+  };
+
+  const logout = () => {
+    localStorage.setItem("access_token", "")
+    route.push("/")
+  };
 
   return (
     <>
       <div className="flex flex-col items-center text-white h-full bg-black py-4">
-        <Logo/>
-          {/* <h1 className="text-[20px] sm:text-4xl text-[1.3rem] md:text-4xl">Your Top Spotify tracks</h1> */}
-  
+        <div className="w-full flex justify-between items-center px-6">
+          <Logo />
+          <Button
+            className="bg-green-100"
+            onClick={() => logout()}
+            icon={<Exit height="20" width="20" />}
+            text="sair"
+          />
+        </div>
         {isLoading ? (
           <Loader />
         ) : (
           <>
-           <LimitSelector getTopTracksOfLimit={getTopTracksOfLimit} limitTracks={limitTracks}/>
-            <TimeRangeSelector getTopTracksOfTimeRange={getTopTracksOfTimeRange} typeTime={typeTime}/>
+            <TimeRangeSelector
+              getTopTracksOfTimeRange={getTopTracksOfTimeRange}
+              typeTime={typeTime}
+            />
             <PrintContainer domEl={domEl}>
-             <HeaderTracks text={showTypeTime(typeTime)} />
+              <HeaderTracks text={showTypeTime(typeTime)} />
               {tracks.map((tracks, index) => (
                 <>
                   <TopFiveTracks
@@ -96,8 +108,8 @@ function TopTracks() {
                 </>
               ))}
               <div className="w-full flex justify-center text-2xl">
-              <SpotifyIcon width="35" height="35" fill="#fff" />
-              <span className="ml-2"> Spotify</span>
+                <SpotifyIcon width="35" height="35" fill="#fff" />
+                <span className="ml-2"> Spotify</span>
               </div>
             </PrintContainer>
           </>
