@@ -26,7 +26,7 @@ export default function Home() {
             </h2>
             <h3 className="text-white mt-6">
               Então não perca mais tempo! Faça login agora no nosso site e
-              descubra os seus status recentes no Spotify.{" "}
+              descubra as tracks mais escutadas por você.{" "}
             </h3>
           </div>
         </div>
