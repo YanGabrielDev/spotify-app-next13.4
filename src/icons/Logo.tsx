@@ -1,4 +1,4 @@
-import { IconProps } from "../interfaces/icon";
+import { IconProps } from "../interfaces/Icon";
 
 export const Logo = ({fill = "#fff", height = "38", width = "390"}: IconProps) => {
   return (
