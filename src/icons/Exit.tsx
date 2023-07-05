@@ -1,4 +1,4 @@
-import { IconProps } from "../interfaces/icon";
+import { IconProps } from "../interfaces/Icon";
 import React from "react";
 
 function Exit({fill, height = "800",width = "800"}: IconProps) {
