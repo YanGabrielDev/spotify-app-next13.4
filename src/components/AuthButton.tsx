@@ -13,7 +13,7 @@ export const AuthButton = () => {
    
   return (
     <Button
-      className="bg-green-100"
+      className="bg-green-100 font-semibold"
       text="Conectar-se"
       onClick={() => handleLogin()}
       icon={<SpotifyIcon width="25" height="25" fill="#000" />}
