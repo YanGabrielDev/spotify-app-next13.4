@@ -19,10 +19,10 @@ export const PrintContainer = ({ children, domEl }: PrintContainerProps) => {
   };
   return (
     <>
-      <div className="flex flex-col bg-black p-5" ref={domEl}>
+      <div className="flex flex-col bg-black p-4" ref={domEl}>
         {children}
       </div>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center font-semibold">
         <Button onClick={() => handleCapture()} color="bg-blue-600" text="Download" />
       </div>
     </>
